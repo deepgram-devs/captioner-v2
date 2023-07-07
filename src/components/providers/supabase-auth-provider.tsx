@@ -3,7 +3,7 @@
 import { Profile } from "@/types/collections";
 import { Session, User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, use, useContext, useEffect, useState } from "react";
 import AdminContext from "@/components/providers/AdminContext";
 import useSWR from "swr";
 import { useSupabase } from "./supabase-provider";
@@ -35,18 +35,12 @@ export default function SupabaseAuthProvider({
 }) {
   const { supabase } = useSupabase();
   const router = useRouter();
+
   const [isAdmin, setIsAdmin] = useState(false);
 
   // Get USER
   const getUser = async () => {
     const user = serverSession?.user ?? null;
-    if (user) {
-    const authDomain = user.email?.split("@")[1];
-    if (authDomain == "deepgram.com") {
-      setIsAdmin(true);
-    }
-    console.log("authDomain", authDomain);
-    }
     return user;
   };
 
@@ -93,8 +87,6 @@ export default function SupabaseAuthProvider({
 
   // Refresh the Page to Sync Server and Client
   useEffect(() => {
-
-    console.log("serverSession", serverSession);
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
@@ -117,6 +109,15 @@ export default function SupabaseAuthProvider({
     signInWithEmail,
     createAccount,
   };
+
+  useEffect(() => {
+    if (user) {
+      const authDomain = user.email?.split("@")[1];
+      if (authDomain == "deepgram.com") {
+        setIsAdmin(true);
+      }
+    }
+  }, [user]);
 
   return <Context.Provider value={exposed}>
     <AdminContext.Provider value={{ isAdmin, setIsAdmin }}>

@@ -1,10 +1,11 @@
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { BeakerIcon } from "@heroicons/react/24/outline";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSupabase } from "@/components/providers/supabase-provider";
 
 const LoginBox = () => {
-  const supabase = useSupabaseClient();
+
+  const { supabase } = useSupabase();
 
   return (
     <>
