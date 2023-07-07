@@ -3,7 +3,8 @@
 import { Profile } from "@/types/collections";
 import { Session, User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import AdminContext from "@/components/providers/AdminContext";
 import useSWR from "swr";
 import { useSupabase } from "./supabase-provider";
 interface ContextI {
@@ -34,12 +35,18 @@ export default function SupabaseAuthProvider({
 }) {
   const { supabase } = useSupabase();
   const router = useRouter();
+  const [isAdmin, setIsAdmin] = useState(false);
 
   // Get USER
   const getUser = async () => {
     const user = serverSession?.user ?? null;
-    console.log("here", serverSession);
-    console.log("user", user);
+    if (user) {
+    const authDomain = user.email?.split("@")[1];
+    if (authDomain == "deepgram.com") {
+      setIsAdmin(true);
+    }
+    console.log("authDomain", authDomain);
+    }
     return user;
   };
 
@@ -108,9 +115,14 @@ export default function SupabaseAuthProvider({
     mutate,
     signOut,
     signInWithEmail,
+    createAccount,
   };
 
-  return <Context.Provider value={exposed}>{children}</Context.Provider>;
+  return <Context.Provider value={exposed}>
+    <AdminContext.Provider value={{ isAdmin, setIsAdmin }}>
+      {children}
+    </AdminContext.Provider>
+</Context.Provider>;
 }
 
 export const useAuth = () => {
