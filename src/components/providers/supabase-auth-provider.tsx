@@ -1,6 +1,5 @@
 "use client";
 
-import { Profile } from "@/types/collections";
 import { Session, User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 import { createContext, use, useContext, useEffect, useState } from "react";
