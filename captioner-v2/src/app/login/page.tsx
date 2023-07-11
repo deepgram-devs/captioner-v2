@@ -28,7 +28,7 @@ const Login: NextPage = () => {
   
   useEffect(() => {
     if (!isEmpty(user)) {
-      router.push("/app");
+      router.push("/app/events");
     } else {
       setOpen(true);
     }
