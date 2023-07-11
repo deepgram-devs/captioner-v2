@@ -8,6 +8,7 @@ import AdminContext from "@/components/providers/admin-context";
 import AdminEventList from "@/components/ui/events-list-admin";
 import UserEventList from "@/components/ui/events-list-user";
 import {useRouter} from "next/navigation";
+import { useSupabase } from "@/components/providers/supabase-provider";
 
 // Create a single supabase client for interacting with your database
 
@@ -15,13 +16,27 @@ const supabase = createClient();
 const EventHome: NextPage = () => {
   const {isAdmin} = useContext(AdminContext);
   const router = useRouter();
+  const {supabase} = useSupabase();
+
+  function logout(){
+    supabase.auth.signOut();
+  }
 
   return (
     <>
     <AdminLayout type="broadcast" eventName={"Event Captioner"}>
       <div className="mx-14">
-      <div className="flex flex-row justify-center sm:justify-end m-6">
-        <div className="ring-gradient-to-b-2">
+      <div className="flex flex-row justify-center sm:justify-between my-6">
+      <button onClick={
+        (e)=>{
+        logout();
+        }
+      } className="bg-black hover:bg-transparent m-[2px] rounded-md">
+        <div className="my-3">
+        Logout
+        </div>
+      </button>
+      <div className="ring-gradient-to-b-2">
       <button onClick={
         (e)=>{
         router.push('/app/events/new')
