@@ -4,7 +4,7 @@ import {useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase-browser";
 import { DGEvent } from '@/types/event';
 import Link from 'next/link';
-import router from 'next/router';
+import {useRouter} from 'next/navigation';
 
 const statuses = {
   approved: 'text-green-700 bg-green-50 ring-green-600/20',
@@ -17,6 +17,7 @@ function classNames(...classes: string[]) {
 }
 
 function NoEvents(){
+  const router = useRouter();
   return (
     <div className='ring-gradient-to-b-2 p-[2px] my-5'>
         <button
@@ -82,6 +83,7 @@ export default function EventListUser() {
           <div className="min-w-0">
             <div className="flex items-start gap-x-3">
               <p className="text-sm font-semibold leading-6 text-white">{event.title}</p>
+              {event.approval_status!=undefined &&
               <p
                 className={classNames(
                   statuses[event.approval_status],
@@ -89,7 +91,7 @@ export default function EventListUser() {
                 )}
               >
                 {event.approval_status}
-              </p>
+              </p>}
             </div>
             <div className="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-300">
               <p className="whitespace-nowrap">

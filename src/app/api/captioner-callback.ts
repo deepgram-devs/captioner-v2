@@ -1,6 +1,6 @@
 import { Deepgram } from "@deepgram/sdk";
 import { NextApiRequest, NextApiResponse } from "next";
-import { createClient } from "@/utils/supabase-server";
+import { createClient } from "../../utils/supabase-server";
 
 const callBackRoute = async (req: NextApiRequest, res: NextApiResponse) => {
   // Create authenticated Supabase Client

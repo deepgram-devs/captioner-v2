@@ -1,5 +1,5 @@
-import NavBarWithLogo from "../ui/NavBarWithLogo";
-import StreamBanner from "../ui/StreamBanner";
+import NavBarWithLogo from "../ui/navbar-with-logo";
+import StreamBanner from "../ui/stream-banner";
 type EventLayout = {
   children: React.ReactNode;
   eventName?: string;

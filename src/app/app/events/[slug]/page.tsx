@@ -1,22 +1,21 @@
 "use client";
 
-import EventLayout from "../../../../components/layouts/EventLayout"
+import EventLayout from "../../../../components/layouts/event-layout"
 import { usePathname } from "next/navigation";
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import type { DGEvent } from "../../../../types/event";
-import TranscriptDisplay from "../../../../components/ui/TranscriptDisplay"
+import TranscriptDisplay from "../../../../components/ui/transcript-display"
 
 import { createClient } from "../../../../utils/supabase-browser";
 
 const EventHome: NextPage = () => {
-  const [event, setEvent] = useState({} as DGEvent);
+  const [event, setEvent] = useState({} as DGEvent | any);
 
   const pathname = usePathname()
 
   
   const slug = pathname.split('/').slice(-1)[0]
-
 
   const supabase = createClient();
 

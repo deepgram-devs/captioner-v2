@@ -41,7 +41,7 @@ export default function EventList() {
   
   useEffect(() => {
     getEvents().catch((err) => console.log(err));
-  }, []);
+  }, [getEvents]);
 
   return (
     <div className='custom-bar my-10'>
@@ -53,14 +53,14 @@ export default function EventList() {
           <div className="min-w-0">
             <div className="flex items-start gap-x-3">
               <p className="text-sm font-semibold leading-6 text-white">{event.title}</p>
-              <p
+              {event.approval_status!=undefined && <p
                 className={classNames(
                   statuses[event.approval_status],
                   'rounded-md whitespace-nowrap mt-0.5 px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset'
                 )}
               >
                 {event.approval_status}
-              </p>
+              </p>}
             </div>
             <div className="mt-1 flex items-center gap-x-2 text-xs leading-5 text-gray-300">
               <p className="whitespace-nowrap">

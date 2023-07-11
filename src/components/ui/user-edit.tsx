@@ -5,7 +5,7 @@ import * as React from "react"
 import { addDays, format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { DateRange } from "react-day-picker"
-import AdminLayout from "../layouts/AdminLayout"
+import AdminLayout from "../layouts/admin-layout"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
@@ -16,8 +16,8 @@ import {
 } from "@/components/ui/popover"
 import { createClient } from "@/utils/supabase-browser";
 import {useRouter} from 'next/navigation'
-import SuccessPage from "./SuccessPopUp"
-import FileUpload from "./FileUpload"
+import SuccessPage from "./success-popup"
+import FileUpload from "./file-upload"
 
 
 

@@ -1,4 +1,4 @@
-import { createClient } from "@/utils/supabase-server";
+import { createClient } from "../../utils/supabase-server";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const NewEventRoute = async (req: NextApiRequest, res: NextApiResponse) => {

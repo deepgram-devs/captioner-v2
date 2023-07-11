@@ -1,13 +1,13 @@
 'use client';
 
-import AdminContext from "../../../../../components/providers/AdminContext";
+import AdminContext from "../../../../../components/providers/admin-context";
 import { useContext, useEffect, useState } from "react";
 import { useSearchParams, usePathname } from "next/navigation";
-import { createClient } from "@/utils/supabase-browser";
-import { DGEvent } from "@/types/event";
-import UserEventEdit from "../../../../../components/ui/UserEdit";
+import { createClient } from "../../../../../utils/supabase-browser";
+import { DGEvent } from "../../../../../types/event";
+import UserEventEdit from "../../../../../components/ui/user-edit";
 import ErrorPage from 'next/error'
-import AdminEdit from "../../../../../components/ui/AdminApprovalEdit";
+import AdminEdit from "../../../../../components/ui/admin-approval-edit";
 
 const supabase = createClient();  
 

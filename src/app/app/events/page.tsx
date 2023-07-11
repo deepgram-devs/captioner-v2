@@ -1,19 +1,20 @@
 "use client";
 
-import AdminLayout from "@/components/layouts/AdminLayout";
+import AdminLayout from "../../../components/layouts/admin-layout";
 import type { NextPage } from "next";
 import {useContext} from "react";
-import { createClient } from "@/utils/supabase-browser";
-import AdminContext from "../../../components/providers/AdminContext";
-import AdminEventList from "../../../components/ui/eventsListAdmin";
-import UserEventList from "../../../components/ui/eventsListUser";
-import router from "next/router";
+import { createClient } from "../../../utils/supabase-browser";
+import AdminContext from "../../../components/providers/admin-context";
+import AdminEventList from "../../../components/ui/events-list-admin";
+import UserEventList from "../../../components/ui/events-list-user";
+import {useRouter} from "next/navigation";
 
 // Create a single supabase client for interacting with your database
 
 const supabase = createClient();
 const EventHome: NextPage = () => {
   const {isAdmin} = useContext(AdminContext);
+  const router = useRouter();
 
   return (
     <>

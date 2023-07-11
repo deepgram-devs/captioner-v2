@@ -3,7 +3,7 @@
 import { Session, User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 import { createContext, use, useContext, useEffect, useState } from "react";
-import AdminContext from "@/components/providers/AdminContext";
+import AdminContext from "../../components/providers/admin-context";
 import useSWR from "swr";
 import { useSupabase } from "./supabase-provider";
 interface ContextI {

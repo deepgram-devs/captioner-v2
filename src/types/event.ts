@@ -3,9 +3,9 @@ export type DGEvent = {
   title: string;
   slug?: string;
   key?: string;
-  dg_project: string;
-  dg_key: string;
-  approval_status: "approved" | "pending" | "rejected";
+  dg_project?: string;
+  dg_key?: string;
+  approval_status?: "approved" | "pending" | "rejected";
   start_date?: string;
   end_date?: string;
   total_days?: number;

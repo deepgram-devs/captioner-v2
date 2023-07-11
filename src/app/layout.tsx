@@ -6,9 +6,9 @@ export const metadata = {
   description: " Transcribe your events in real-time with Deepgram's Event Captioner."
 };
 
-import SupabaseAuthProvider from "@/components/providers/supabase-auth-provider";
-import SupabaseProvider from "@/components/providers/supabase-provider";
-import { createClient } from "@/utils/supabase-server";
+import SupabaseAuthProvider from "../components/providers/supabase-auth-provider";
+import SupabaseProvider from "../components/providers/supabase-provider";
+import { createClient } from "../utils/supabase-server";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });

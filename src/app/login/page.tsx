@@ -3,13 +3,13 @@
 import type { NextPage } from "next";
 import {  User } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/navigation";
-import LoginLayout from "@/components/layouts/LoginLayout";
-import LoginBox from "@/components/LoginBox";
+import LoginLayout from "../../components/layouts/login-layout";
+import LoginBox from "../../components/ui/login-box";
 import { BeakerIcon } from "@heroicons/react/24/outline";
 
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState, useEffect, useContext } from "react";
-import { useAuth } from "@/components/providers/supabase-auth-provider";
+import { useAuth } from "../../components/providers/supabase-auth-provider";
 
 const isEmpty = (obj: User | null | undefined): boolean => {
   if (obj === null) return true;
