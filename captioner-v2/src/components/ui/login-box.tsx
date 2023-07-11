@@ -11,7 +11,7 @@ const LoginBox = () => {
     <>
       <div className="flex flex-col items-center">
         <BeakerIcon className="h-20 w-20 stroke-red-500 mb-4" />
-        <h2 className="text-4xl font-bold leading-loose">Deepbin</h2>
+        <h2 className="text-4xl font-bold leading-loose">Event Captioner</h2>
       </div>
       <Auth
         supabaseClient={supabase}

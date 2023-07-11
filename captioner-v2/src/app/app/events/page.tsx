@@ -32,7 +32,7 @@ const EventHome: NextPage = () => {
         logout();
         }
       } className="bg-black hover:bg-transparent m-[2px] rounded-md">
-        <div className="my-3">
+        <div className="my-3 text-red-600">
         Logout
         </div>
       </button>
