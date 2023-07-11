@@ -14,7 +14,6 @@ export async function middleware(req: NextRequest) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  console.log(pathname.split('/')[1])
   if (!session && pathname.split('/')[1] == 'app') {
     const url = new URL(req.url);
     url.pathname = "/login";

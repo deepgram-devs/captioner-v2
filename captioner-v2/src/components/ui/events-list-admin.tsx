@@ -34,7 +34,6 @@ export default function EventList() {
     }
     if (data) {
       setEvents(data);
-      console.log("DATA:",events);
     }
   };
   

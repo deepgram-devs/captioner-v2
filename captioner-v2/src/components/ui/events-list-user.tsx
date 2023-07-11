@@ -64,7 +64,6 @@ export default function EventListUser() {
     }
     if (data) {
       setEvents(data);
-      console.log("DATA:",events);
     }
   };
   
