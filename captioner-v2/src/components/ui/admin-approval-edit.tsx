@@ -16,7 +16,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { createClient } from "@/utils/supabase-browser"
-import router from 'next/router'
+import {useRouter} from 'next/navigation'
 import SuccessPage from "./success-popup"
 import FileUpload from "./file-upload"
 
@@ -25,7 +25,7 @@ export default function AdminEdit(event: any){
 
     // const supabase = useSupabaseClient<Database>();
 
-
+  const router = useRouter();
   // Get today's date to use as the default date in the calendar
   let today = new Date()
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
