@@ -25,5 +25,12 @@ export async function middleware(req: NextRequest) {
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
+
+  if (pathname == '/'){
+    const url = new URL(req.url);
+    url.pathname = "/app/events";
+    return NextResponse.redirect(url);
+  }
+
   return res;
 }
