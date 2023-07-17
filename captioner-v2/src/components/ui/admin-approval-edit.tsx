@@ -262,7 +262,7 @@ export default function AdminEdit(event: any){
             </div>
 
             <div className="sm:col-span-4" id="slugError">
-              <label htmlFor="" className="block text-sm font-medium leading-6 text-white">
+              <label htmlFor="" className="block text-sm font-medium leading-6">
                 Slug
               </label>
               <div className="mt-2">
@@ -279,7 +279,7 @@ export default function AdminEdit(event: any){
                   />
                 </div>
                 {slugError!="" &&
-                <p className="mt-3 text-sm leading-6 text-red">*{slugError}</p>
+                <p className="mt-3 text-sm leading-6 text-red-500">*{slugError}</p>
                 }
               </div>
             </div>
@@ -300,7 +300,7 @@ export default function AdminEdit(event: any){
                 />
               </div>
               {dgProjectIDError!="" &&
-                <p className="mt-3 text-sm leading-6 text-red">*{dgProjectIDError}</p>
+                <p className="mt-3 text-sm leading-6 text-red-500">*{dgProjectIDError}</p>
                 }
             </div>
             
@@ -320,7 +320,7 @@ export default function AdminEdit(event: any){
                 />
               </div>
               {dgProjectKeyError!="" &&
-                <p className="mt-3 text-sm leading-6 text-red">*{dgProjectKeyError}</p>
+                <p className="mt-3 text-sm leading-6 text-red-500">*{dgProjectKeyError}</p>
               }
             </div>
             
