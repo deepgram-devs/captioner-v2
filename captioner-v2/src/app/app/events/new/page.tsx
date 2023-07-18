@@ -4,7 +4,7 @@ import * as React from "react"
 import { addDays, format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { DateRange } from "react-day-picker"
- 
+import slugify from "slugify";
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
@@ -19,10 +19,12 @@ import AdminLayout from '@/components/layouts/admin-layout'
 import {useRouter} from 'next/navigation'
 import FileUploadNewEvent from '@/components/ui/file-upload-new-event'
 import SuccessPage from '@/components/ui/success-popup'
+import { error } from "console";
 
 export default function NewEvent() {
 
   const supabase = createClient();
+  var slug = "";
 
 
   // Get today's date to use as the default date in the calendar
@@ -46,6 +48,7 @@ export default function NewEvent() {
   const [zipCode, setZipCode] = useState<string>("");
   const [event_prospectus, setEventProspectus] = useState({} as File);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
+  const [slugError, setSlugError] = useState<string>("");
 
   const submitNewEvent = async (updateEvent: any) => {
 
@@ -54,6 +57,9 @@ export default function NewEvent() {
       data: { session },
     } = await supabase.auth.getSession();
     const user = session?.user;
+    const today_date = new Date();
+    const date_string = format(today_date, "MM-dd-yyyy");
+    slug = slugify(eventName +'-'+date_string, {lower: true});
     const data = await supabase
       .from("events")
       .insert(
@@ -71,13 +77,22 @@ export default function NewEvent() {
           city: city,
           street_address: streetAddress,
           state: eventState,
-          zip_code: zipCode
+          zip_code: zipCode,
+          slug: slug,
         },
         { count: "estimated" }
       )
       .select();
     console.log("data", { data });
     if (data.error) {
+      if (data.error.code == "23505"){
+    setSlugError("There was an error creating the event. Please try a new name");
+    const element = document.getElementById("event-title");
+        element?.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+      }
+      else{
+        alert("There was an error creating the event. Please try again.");
+      }
       // updateSuccessMessage("Error creating event");
     } else {
       // updateSuccessMessage("Event created");
@@ -105,6 +120,7 @@ export default function NewEvent() {
   };
 
 
+
   const router = useRouter();
 
   return (
@@ -128,7 +144,7 @@ export default function NewEvent() {
               <label className="block text-sm font-medium leading-6 text-white">
                 Event Name
               </label>
-              <div className="mt-2">
+              <div className="mt-2" id="event-title">
                 <input
                   type="text"
                   name="event-title"
@@ -137,6 +153,9 @@ export default function NewEvent() {
                   className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setEventName(e.target.value)}
                 />
+                {slugError!="" &&
+                <p className="mt-3 text-sm leading-6 text-red-500">*{slugError}</p>
+                }
               </div>
             </div>
 
