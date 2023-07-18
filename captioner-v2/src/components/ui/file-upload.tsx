@@ -52,13 +52,11 @@ export default function FileUpload({event, prospectusFile, setProspectusFile}: F
         if (file != null) {
             // Replace prospectus if it already exists
             if (propspectusFetched) {
-                console.log("file exists");
-            const { data: fileData, error: fileError } = await supabase.storage
+                const { data: fileData, error: fileError } = await supabase.storage
               .from("event-prospectus")
               .update(`${event.id}/Prospectus`, file, {
                 cacheControl: "3600",
               });
-            console.log({ fileData, fileError });
             if (!fileError) {
                 console.log("file updated");
                 setFileUploadState(2);
@@ -76,7 +74,6 @@ export default function FileUpload({event, prospectusFile, setProspectusFile}: F
                 cacheControl: "3600",
                 upsert: false,
               });
-            console.log({ fileData, fileError });
             if (!fileError) {
                 setFileUploadState(2);
                 console.log("file uploaded");
@@ -99,7 +96,6 @@ export default function FileUpload({event, prospectusFile, setProspectusFile}: F
         const { data: fileData, error: fileError } = await supabase.storage
         .from("event-prospectus")
         .download(`${event.id}/Prospectus`);
-        console.log({ fileData, fileError });
         if (!fileError) {
             return fileData;
         }

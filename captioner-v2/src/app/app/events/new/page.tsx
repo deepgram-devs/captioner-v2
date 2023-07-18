@@ -83,7 +83,6 @@ export default function NewEvent() {
         { count: "estimated" }
       )
       .select();
-    console.log("data", { data });
     if (data.error) {
       if (data.error.code == "23505"){
     setSlugError("There was an error creating the event. Please try a new name");
@@ -93,9 +92,7 @@ export default function NewEvent() {
       else{
         alert("There was an error creating the event. Please try again.");
       }
-      // updateSuccessMessage("Error creating event");
     } else {
-      // updateSuccessMessage("Event created");
       if (event_prospectus.name) {
         const { data: fileData, error: fileError } = await supabase.storage
           .from("event-prospectus")
@@ -103,7 +100,6 @@ export default function NewEvent() {
             cacheControl: "3600",
             upsert: false,
           });
-        console.log({ fileData, fileError });
         if (!fileError) {
             console.log("file uploaded");
             setShowSuccess(true);

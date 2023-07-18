@@ -18,9 +18,6 @@ const NewEventRoute = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   try {
-    console.log("req.body", req.body);
-    // const body = JSON.parse(req.body);
-    // console.log("body", body);
     const { title, startDate, totalDays, contactEmail } = req.body;
     const data = await supabase.from("events").insert([
       {
@@ -31,7 +28,6 @@ const NewEventRoute = async (req: NextApiRequest, res: NextApiResponse) => {
         user_id: session.user.id,
       },
     ]);
-    // console.log("data", req.nexUrl);
     if (data.status === 201 && data.statusText === "Created") {
       res.redirect("/events");
     }

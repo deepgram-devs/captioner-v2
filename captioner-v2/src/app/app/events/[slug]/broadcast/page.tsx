@@ -60,6 +60,7 @@ const EventHome: NextPage = () => {
 
   async function handleResponse(message: MessageEvent) {
     const data = JSON.parse(message.data);
+    try{
     const transcript = data.channel.alternatives[0].transcript;
     if (transcript.length > 0) {
       const insertData = await supabase.from("transcripts").insert({
@@ -70,6 +71,9 @@ const EventHome: NextPage = () => {
       if (insertData.error) {
         throw insertData.error;
       }
+    }}
+    catch(err){
+      console.log(err)
     }
   }
 
@@ -85,11 +89,10 @@ const EventHome: NextPage = () => {
     }
     setDgKey(resp.deepgramToken);
     ws = new WebSocket(
-      "wss://api.deepgram.com/v1/listen?tier=enhanced&punctuate=true&endpointing=5&smart_format=true",
+     "wss://api.deepgram.com/v1/listen?tier=enhanced&punctuate=true&endpointing=5&smart_format=true&tag=event_captioner&tag="+String(slug),
       ["token", resp.deepgramToken]
     );
     ws.onopen = start;
-    console.log('here')
     ws.onmessage = handleResponse;
     setDisableSubmit(true);
   };
@@ -102,8 +105,6 @@ const EventHome: NextPage = () => {
       alert("You must provide access to the microphone");
     }
   };
-
-  console.log(showMicCheck, diableSubmit);
       
 
   return (

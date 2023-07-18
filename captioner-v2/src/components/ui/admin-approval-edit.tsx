@@ -137,7 +137,6 @@ export default function AdminEdit(event: any){
             .eq('id', event.event.id)
             .select();
     if (!error){ 
-      console.log(data);
       setShowSuccess(true);
     }
     else{

@@ -23,8 +23,6 @@ const Login: NextPage = () => {
   // if there is a user, get a user
   
   const {user, isLoading} = useAuth();
-
-  console.log(user, isLoading);
   
   useEffect(() => {
     if (!isEmpty(user)) {
