@@ -22,6 +22,7 @@ const LoginBox = () => {
             default: {
               colors: {
                 brandAccent: "black",
+                inputText: "white",
               },
             },
           },
