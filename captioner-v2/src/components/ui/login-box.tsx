@@ -27,7 +27,7 @@ const LoginBox = () => {
             },
           },
           className: {
-            button: "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500",
+            button: "ring-gradient-to-b-2",
           },
         }}
         theme="dark"
