@@ -37,27 +37,6 @@ const Login: NextPage = () => {
 
   return (
     <LoginLayout>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="rounded-md ring-gradient-to-b-2 p-[0.125rem]">
-          <div className="bg-black p-8 rounded">
-            <div className="flex flex-col items-center">
-              <BeakerIcon className="h-20 w-20 stroke-red-500 animate-spin mb-4" />
-              {isEmpty(user) ? (
-                <>
-                  {open ? (
-                    <span className="loading">Authenticating</span>
-                  ) : (
-                    <span className="loading">Loading</span>
-                  )}
-                </>
-              ) : (
-                <span className="loading">Signing in</span>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
       <Transition appear show={open} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={() => {}}>
           <Transition.Child
