@@ -18,6 +18,7 @@ import { createClient } from "@/utils/supabase-browser";
 import {useRouter} from 'next/navigation'
 import SuccessPage from "./success-popup"
 import FileUpload from "./file-upload"
+import axios from "axios";
 
 
 
@@ -42,6 +43,33 @@ export default function UserEventEdit(event: any){
   const [eventState, setEventState] = useState<string>("");
   const [zipCode, setZipCode] = useState<string>("");
   const [event_prospectus, setEventProspectus] = useState({} as File);
+
+  const slackNotificationEndpoint = process.env.NEXT_PUBLIC_SLACK_NOTIFICATION_ENDPOINT;
+
+const alertSlackBot = async (data:any) => {
+
+  if (slackNotificationEndpoint == undefined) {
+    console.log("Slack notification endpoint not defined");
+    return;
+  }
+  try {
+    const prospectus_link = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/event-prospectus/${data[0].id}/Prospectus`;
+
+    const slackReq = await axios.post(slackNotificationEndpoint, {
+      event_data: data,
+      prospectus_link: prospectus_link
+    });
+
+    if (slackReq.status === 200) {
+      console.log("Slack notification sent");
+    } else {
+      console.log("Failed to send Slack notification. Status code:", slackReq.status);
+    }
+  } catch (error) {
+    console.error("Error sending Slack notification:", error);
+  }
+};
+
   
   // Returns true if there were any updates made to the event
   function changesMade(){
@@ -62,7 +90,7 @@ export default function UserEventEdit(event: any){
   const updateEventData = async () => { 
     const updated = changesMade();   
     if (!updated) return;
-    const {error} = await supabase
+    const {data,error} = await supabase
             .from('events')
             .update({ title: eventName,
                 start_date: date?.from,
@@ -82,6 +110,7 @@ export default function UserEventEdit(event: any){
             .select();
     if (!error){ 
         setShowSuccess(true);
+        alertSlackBot(data);
     }
     }
 

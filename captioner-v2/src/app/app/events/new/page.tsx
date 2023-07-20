@@ -19,7 +19,8 @@ import AdminLayout from '@/components/layouts/admin-layout'
 import {useRouter} from 'next/navigation'
 import FileUploadNewEvent from '@/components/ui/file-upload-new-event'
 import SuccessPage from '@/components/ui/success-popup'
-import { error } from "console";
+import axios from 'axios'
+
 
 export default function NewEvent() {
 
@@ -49,6 +50,31 @@ export default function NewEvent() {
   const [event_prospectus, setEventProspectus] = useState({} as File);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
   const [slugError, setSlugError] = useState<string>("");
+  const slackNotificationEndpoint = process.env.NEXT_PUBLIC_SLACK_NOTIFICATION_ENDPOINT;
+
+const alertSlackBot = async (data:any) => {
+
+  if (slackNotificationEndpoint == undefined) {
+    console.log("Slack notification endpoint not defined");
+    return;
+  }
+  try {
+    const prospectus_link = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/event-prospectus/${data[0].id}/Prospectus`;
+
+    const slackReq = await axios.post(slackNotificationEndpoint, {
+      event_data: data,
+      prospectus_link: prospectus_link
+    });
+
+    if (slackReq.status === 200) {
+      console.log("Slack notification sent");
+    } else {
+      console.log("Failed to send Slack notification. Status code:", slackReq.status);
+    }
+  } catch (error) {
+    console.error("Error sending Slack notification:", error);
+  }
+};
 
   const submitNewEvent = async (updateEvent: any) => {
 
@@ -102,6 +128,7 @@ export default function NewEvent() {
           });
         if (!fileError) {
             console.log("file uploaded");
+            alertSlackBot(data.data);
             setShowSuccess(true);
         }
         else{
@@ -110,6 +137,7 @@ export default function NewEvent() {
         }
       }
       else{ 
+        alertSlackBot(data.data);
         setShowSuccess(true);
       }
     }
