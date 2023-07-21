@@ -44,7 +44,7 @@ export async function POST (req: NextRequest) {
         return NextResponse.json({ deepgramToken: newKey.key });
       }
     } else {
-      return NextResponse.json({ error: "Event not found" });
+      return NextResponse.json({ error: "Event not found or is not associated with this user's session" });
     }
   } catch (error) {
     return NextResponse.json({ error:error });

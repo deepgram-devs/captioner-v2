@@ -15,13 +15,13 @@ const TranscriptDisplay = (props: TDProps) => {
     const lines = transcriptColorizerProps.htmlString.split('\n');
     const styledHtml = lines.map((line, index) => {
       if (index === 1) {
-        return <span className="color:#FFFCC7" key={line}>{line}</span>;
+        return <span className="text-[#FFFCC7]" key={line}>{line}</span>;
       } else {
         return line + '\n';
       }
     });
   
-    return <div className="color:#FFF">{styledHtml}</div>;
+    return <div className="text-[#FFF]">{styledHtml}</div>;
   };
 
   useEffect(() => {
