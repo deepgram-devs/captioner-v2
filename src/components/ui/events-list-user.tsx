@@ -54,8 +54,8 @@ export default function EventListUser() {
     const { data, error } = await supabase
     .from("events")
     .select(
-      "id, title, slug, key, approval_status, start_date, total_days, user_id, contact_email, organizer_name"
-      ).order("start_date", { ascending: false }).eq(
+      "id, title, slug, key, approval_status, start_date, total_days, user_id, contact_email, organizer_name, created_at"
+      ).order("created_at", { ascending: false }).eq(
         "user_id", user?.id
       );
       setFetched(true);
