@@ -108,7 +108,8 @@ const EventHome: NextPage = () => {
       
 
   return (
-    <AdminLayout type="broadcast" eventName={event.title}>
+    <>
+    {event && <AdminLayout type="broadcast" eventName={event.title}>
       {(!showMicCheck || !diableSubmit)?
       <div className="h-full flex flex-row m-auto justify-center align-center">
         <div className="m-auto">
@@ -126,7 +127,7 @@ const EventHome: NextPage = () => {
       <TranscriptDisplay
         eventId={event.id}
       />}
-    </AdminLayout>
+    </AdminLayout>}</>
   );
 };
 
