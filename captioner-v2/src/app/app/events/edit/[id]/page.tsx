@@ -34,18 +34,33 @@ function EventEditPage(){
     useEffect(() => {
       if (id) {
           const getEvent = async () => {
-            const { data, error } = await supabase
+            if (isAdmin){
+              const { data, error } = await supabase
               .from("events")
               .select("id, title, slug, key, dg_project, dg_key, approval_status, start_date, end_date, total_days, user_id, contact_email, website, description, organizer_name, country, city, state, street_address, zip_code")
-              .eq("id", id).limit(1);  
-          setFetched(true);
-            if (error) {
-              throw error;
+              .eq("id", id).limit(1);
+              if (error) {
+                throw error;
+              }
+              if (data) {
+                setEvent(data[0]);
+                isAuthenticatedCheck(data[0]['key'],publisherKey)
+              }  
             }
-            if (data) {
-              setEvent(data[0]);
-              isAuthenticatedCheck(data[0]['key'],publisherKey)
+            else {
+              const { data, error } = await supabase
+              .from("events")
+              .select("id, title, slug, key, approval_status, start_date, end_date, total_days, user_id, contact_email, website, description, organizer_name, country, city, state, street_address, zip_code")
+              .eq("id", id).limit(1);
+              if (error) {
+                throw error;
+              }
+              if (data) {
+                setEvent(data[0]);
+                isAuthenticatedCheck(data[0]['key'],publisherKey)
+              }
             }
+            setFetched(true);
           };
           getEvent().catch((err) => console.log(err));
         }
