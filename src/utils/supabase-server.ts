@@ -5,6 +5,6 @@ import "server-only";
 import type { Database } from "../types/supabase";
 
 export const createClient = () =>
-createServerActionClient<Database>({
+  createServerActionClient<Database>({
     cookies,
   });
