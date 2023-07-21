@@ -109,7 +109,7 @@ const EventHome: NextPage = () => {
 
   return (
     <>
-    {event && <AdminLayout type="broadcast" eventName={event.title}>
+    {event?.id && event?.title && <AdminLayout type="broadcast" eventName={event.title}>
       {(!showMicCheck || !diableSubmit)?
       <div className="h-full flex flex-row m-auto justify-center align-center">
         <div className="m-auto">
