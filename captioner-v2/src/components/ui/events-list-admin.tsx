@@ -27,7 +27,7 @@ export default function EventList() {
     const { data, error } = await supabase
     .from("events")
     .select(
-      "id, title, slug, key, approval_status, start_date, total_days, user_id, contact_email, dg_project, dg_key, organizer_name"
+      "id, title, slug, key, approval_status, start_date, total_days, user_id, contact_email, organizer_name"
       ).order("start_date", { ascending: false }).limit(50);
     if (error) {
       throw error;
