@@ -11,7 +11,7 @@ const  StreamBanner = ({streamName}:StreamBanner) => {
             aria-hidden="true"
           >
             <div
-              className="aspect-[577/310] w-[40rem] bg-gradient-to-r from-[#B51B41] to-[#981E76] opacity-90"
+              className="aspect-[577/310] w-[40rem] bg-gradient-to-r from-[#FF2EEA] to-[#4B3CFF] opacity-50"
               style={{
                 clipPath:
                   'polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)',
@@ -23,7 +23,7 @@ const  StreamBanner = ({streamName}:StreamBanner) => {
             aria-hidden="true"
           >
             <div
-              className="aspect-[577/310] w-[40rem] bg-gradient-to-r from-[#205865] to-[#173348] opacity-90"
+              className="aspect-[577/310] w-[40rem] bg-gradient-to-r from-[#4B3CFF] to-[#FF2EEA] opacity-50"
               style={{
                 clipPath:
                   'polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)',

@@ -210,7 +210,7 @@ export default function AdminEdit(event: any){
                   id="event-title"
                   defaultValue = {eventName}
                   autoComplete="event-title"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setEventName(e.target.value)}
                 />
               </div>
@@ -271,7 +271,7 @@ export default function AdminEdit(event: any){
                     type="text"
                     name="slug"
                     id="slug"
-                    className="flex-1 border-0 bg-transparent py-1.5 pl-1 text-white focus:ring-0 sm:text-sm sm:leading-6"
+                    className="flex-1 border-0 bg-transparent   pl-1 text-white focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder="test-stream"
                     defaultValue={slug}
                     onChange={(e) => setSlug(e.target.value)}
@@ -294,7 +294,7 @@ export default function AdminEdit(event: any){
                   id="event-title"
                   defaultValue = {dgProjectID}
                   autoComplete="event-title"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setDGProjectID(e.target.value)}
                 />
               </div>
@@ -314,7 +314,7 @@ export default function AdminEdit(event: any){
                   id="event-title"
                   defaultValue = {dgProjectKey}
                   autoComplete="event-title"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setDGProjectKey(e.target.value)}
                 />
               </div>
@@ -333,7 +333,7 @@ export default function AdminEdit(event: any){
                   id="about"
                   name="about"
                   rows={3}
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   defaultValue={eventDescription}
                   onChange={(e) => setEventDescription(e.target.value)}
                 />
@@ -368,7 +368,7 @@ export default function AdminEdit(event: any){
                   id="name"
                   autoComplete="name"
                   defaultValue = {organizerName}
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setOrganizerName(e.target.value)}
                 />
               </div>
@@ -386,7 +386,7 @@ export default function AdminEdit(event: any){
                   type="email"
                   autoComplete="email"
                   defaultValue={organizerEmail}
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setOrganizerEmail(e.target.value)}
                 />
               </div>
@@ -403,7 +403,7 @@ export default function AdminEdit(event: any){
                   id="website"
                   defaultValue={websiteLink}
                   autoComplete="website"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setWebsiteLink(e.target.value)}
                 />
               </div>
@@ -414,17 +414,17 @@ export default function AdminEdit(event: any){
                 Country
               </label>
               <div className="mt-2">
-                <select
+              <select
                   id="country"
                   name="country"
-                  defaultValue={country}
                   autoComplete="country-name"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
+                  className="block w-full rounded-md border-0 bg-white/5 p-[16px]  text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
                   onChange={(e) => setCountry(e.target.value)}
                 >
                   <option>United States</option>
                   <option>Canada</option>
                   <option>Mexico</option>
+                  <option>Other</option>
                 </select>
               </div>
             </div>
@@ -440,7 +440,7 @@ export default function AdminEdit(event: any){
                   id="street-address"
                   defaultValue={streetAddress}
                   autoComplete="street-address"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setStreetAddress(e.target.value)}
                 />
               </div>
@@ -457,7 +457,7 @@ export default function AdminEdit(event: any){
                   id="city"
                   defaultValue={city}
                   autoComplete="address-level2"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setCity(e.target.value)}
                 />
               </div>
@@ -474,7 +474,7 @@ export default function AdminEdit(event: any){
                   id="region"
                   defaultValue={eventState}
                   autoComplete="address-level1"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setEventState(e.target.value)}
                 />
               </div>
@@ -491,7 +491,7 @@ export default function AdminEdit(event: any){
                   id="postal-code"
                   defaultValue={zipCode}
                   autoComplete="postal-code"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setZipCode(e.target.value)}
                 />
               </div>

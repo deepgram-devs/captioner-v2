@@ -19,7 +19,7 @@ function classNames(...classes: string[]) {
 function NoEvents(){
   const router = useRouter();
   return (
-    <div className='ring-gradient-to-b-2 p-[2px] my-5'>
+    <div className='p-[2px] my-5'>
         <button
         onClick={
           (e)=>{
@@ -76,7 +76,7 @@ export default function EventListUser() {
     <div className='custom-bar my-20'>
     <h1 className='text-2xl'>Your Events</h1>
     {fetched && events.length === 0 ? <NoEvents/>:
-    <ul role="list" className="divide-y divide-gray-800 h-[400px] overflow-scroll overflow-x-hidden style-4">
+    <ul role="list" className="divide-y divide-gray-800 min-h-[100px] max-h-[350px] overflow-scroll overflow-x-hidden style-4">
       {events.map((event) => (
         <li key={event.id} className="flex items-center justify-between gap-x-6 py-5">
           <div className="min-w-0">

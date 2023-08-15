@@ -111,7 +111,7 @@ body {
     ),
     radial-gradient(
       calc(49.4695%) calc(89.0222%) at calc(32.1895%) calc(77.0222%),
-      rgb(203, 55, 255) 0%,
+      rgba(255, 46, 234, 1) 0%,
       rgba(82, 0, 255, 0) 100%
     ),
     radial-gradient(
@@ -121,14 +121,15 @@ body {
     ),
     radial-gradient(
       calc(58.0895%) 123.66% at calc(96.9805%) calc(79.8195%),
-      rgba(56, 237, 172, 0.7) 0%,
-      rgba(66, 148, 203, 0.7) 37.65%,
-      rgba(82, 0, 255, 0) 100%
+      rgba(120, 0, 237, 1) 0%,
+      rgba(75, 60, 255, 1) 33.33%,
+      rgba(58, 0, 211, 1) 100%
     ),
     radial-gradient(
       39.06% 39.06% at 66.15% 10.94%,
-      rgba(82, 0, 255, 0.7) 0%,
-      rgba(82, 0, 255, 0) 100%
+      rgba(120, 0, 237, 1) 0%,
+      rgba(75, 60, 255, 1) 33.33%,
+      rgba(58, 0, 211, 1) 100%
     ),
     none;
 }
@@ -142,7 +143,7 @@ body {
   transition: box-shadow ease-in-out;
   border-radius: 5px;
   display: block;
-  background: linear-gradient(90deg, rgba(247, 46, 81,0.8),rgba(251, 113, 227,0.8));
+  background: linear-gradient(90deg, rgba(255, 46, 234, 1),rgba(75, 60, 255, 1));
 }
 
 .ring-graident-red{
@@ -150,4 +151,8 @@ body {
   transition: box-shadow ease-in-out;
   border-radius: 5px;
   display: block;
+}
+
+input {
+  padding: 16px;
 }

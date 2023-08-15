@@ -117,7 +117,7 @@ const EventHome: NextPage = () => {
         <button className="m-auto bg-gray-800 gradient-dark rounded-full shadow-md shadow-gray p-10" onClick={(e: React.SyntheticEvent) => {getMicAccess()
                 e.preventDefault();
                 getDGKey();}}>
-        <MicrophoneIcon className=" h-[300px]"/>
+        <MicrophoneIcon className=" h-[200px]"/>
         </button>
         </div>
         <h1 className="text-center font-semibold text-3xl">Start Transcribing</h1>

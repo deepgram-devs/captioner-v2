@@ -37,7 +37,7 @@ export default function UserEventEdit(event: any){
   const [organizerName, setOrganizerName] = useState<string>("");
   const [organizerEmail, setOrganizerEmail] = useState<string>("");
   const [websiteLink, setWebsiteLink] = useState<string>("");
-  const [country, setCountry] = useState<string>("United States");
+  const [country, setCountry] = useState<string>(" ");
   const [city, setCity] = useState<string>("");
   const [streetAddress, setStreetAddress] = useState<string>("");
   const [eventState, setEventState] = useState<string>("");
@@ -74,6 +74,10 @@ const alertSlackBot = async (data:any) => {
   // Returns true if there were any updates made to the event
   function changesMade(){
     if (event.event.title !== eventName) return true;
+    if (event.event.title == ''){
+      alert('Please enter a valid event name')
+      return false;
+    }
     if (event.event.description !== eventDescription) return true;
     if (event.event.organizer_name !== organizerName) return true;
     if (event.event.contact_email !== organizerEmail) return true;
@@ -165,7 +169,7 @@ const alertSlackBot = async (data:any) => {
                   id="event-title"
                   defaultValue = {eventName}
                   autoComplete="event-title"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setEventName(e.target.value)}
                 />
               </div>
@@ -224,7 +228,7 @@ const alertSlackBot = async (data:any) => {
                   id="about"
                   name="about"
                   rows={3}
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   defaultValue={eventDescription}
                   onChange={(e) => setEventDescription(e.target.value)}
                 />
@@ -254,7 +258,7 @@ const alertSlackBot = async (data:any) => {
                   id="name"
                   autoComplete="name"
                   defaultValue = {organizerName}
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setOrganizerName(e.target.value)}
                 />
               </div>
@@ -272,7 +276,7 @@ const alertSlackBot = async (data:any) => {
                   type="email"
                   autoComplete="email"
                   defaultValue={organizerEmail}
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setOrganizerEmail(e.target.value)}
                 />
               </div>
@@ -289,7 +293,7 @@ const alertSlackBot = async (data:any) => {
                   id="website"
                   defaultValue={websiteLink}
                   autoComplete="website"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setWebsiteLink(e.target.value)}
                 />
               </div>
@@ -300,17 +304,17 @@ const alertSlackBot = async (data:any) => {
                 Country
               </label>
               <div className="mt-2">
-                <select
+              <select
                   id="country"
                   name="country"
-                  defaultValue={country}
                   autoComplete="country-name"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
+                  className="block w-full rounded-md border-0 bg-white/5 p-[16px]  text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black"
                   onChange={(e) => setCountry(e.target.value)}
                 >
                   <option>United States</option>
                   <option>Canada</option>
                   <option>Mexico</option>
+                  <option>Other</option>
                 </select>
               </div>
             </div>
@@ -326,7 +330,7 @@ const alertSlackBot = async (data:any) => {
                   id="street-address"
                   defaultValue={streetAddress}
                   autoComplete="street-address"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setStreetAddress(e.target.value)}
                 />
               </div>
@@ -343,7 +347,7 @@ const alertSlackBot = async (data:any) => {
                   id="city"
                   defaultValue={city}
                   autoComplete="address-level2"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setCity(e.target.value)}
                 />
               </div>
@@ -360,7 +364,7 @@ const alertSlackBot = async (data:any) => {
                   id="region"
                   defaultValue={eventState}
                   autoComplete="address-level1"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setEventState(e.target.value)}
                 />
               </div>
@@ -377,7 +381,7 @@ const alertSlackBot = async (data:any) => {
                   id="postal-code"
                   defaultValue={zipCode}
                   autoComplete="postal-code"
-                  className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 bg-white/5   text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   onChange={(e) => setZipCode(e.target.value)}
                 />
               </div>

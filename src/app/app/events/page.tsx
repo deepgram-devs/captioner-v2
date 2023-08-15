@@ -27,26 +27,28 @@ const EventHome: NextPage = () => {
     <AdminLayout type="broadcast" eventName={"Event Captioner"}>
       <div className="mx-14">
       <div className="flex flex-row justify-center sm:justify-between my-6">
-      <button onClick={
-        (e)=>{
-        logout();
-        }
-      } className="bg-black hover:bg-transparent m-[2px] rounded-md">
-        <div className="my-3 text-red-600">
-        Logout
-        </div>
-      </button>
       <div className="ring-gradient-to-b-2">
-      <button onClick={
-        (e)=>{
-        router.push('/app/events/new')
-        }
-      } className="bg-black hover:bg-transparent m-[2px] rounded-md">
-        <div className="my-3 mx-5 sm:mx-10">
-        Create event
-        </div>
-      </button>
-      </div></div>
+        <button onClick={
+          (e)=>{
+          router.push('/app/events/new')
+          }
+        } className="bg-black hover:bg-transparent m-[2px] rounded-md">
+            <div className="my-3 mx-5 sm:mx-10">
+            Create event
+            </div>
+        </button>
+      </div>
+
+        <button onClick={
+          (e)=>{
+          logout();
+          }
+        } className="bg-black hover:bg-transparent m-[2px] rounded-md">
+            <div className="my-3 text-red-600">
+            Logout
+            </div>
+        </button>
+      </div>
     {isAdmin && <AdminEventList/>}
     <UserEventList/>
       </div>
