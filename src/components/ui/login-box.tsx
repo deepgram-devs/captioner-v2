@@ -41,6 +41,7 @@ const LoginBox = () => {
           },
           className: {
             button: "ring-gradient-to-b-2",
+            label: 'text-left'
           },
         }}
         theme="dark"
