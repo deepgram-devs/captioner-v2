@@ -5,6 +5,7 @@ import { createClient } from "@/utils/supabase-browser";
 import { DGEvent } from '@/types/event';
 import Link from 'next/link';
 import {useRouter} from 'next/navigation';
+import { Skeleton } from "./skeleton";
 
 const statuses = {
   approved: 'text-green-700 bg-green-50 ring-green-600/20',
@@ -46,6 +47,8 @@ export default function EventListUser() {
 
   const [fetched, setFetched] = useState(false);
 
+  const [loading, setLoading] = useState(true);
+
   const getEvents = async () => {
     const {
       data: { session },
@@ -65,6 +68,7 @@ export default function EventListUser() {
     if (data) {
       setEvents(data);
     }
+    setLoading(false);
   };
   
   
@@ -75,6 +79,7 @@ export default function EventListUser() {
   return (
     <div className='custom-bar my-20'>
     <h1 className='text-2xl'>Your Events</h1>
+    {loading ? <Skeleton className="h-[200px] rounded-lg w-full"/> :(<>
     {fetched && events.length === 0 ? <NoEvents/>:
     <ul role="list" className="divide-y divide-gray-800 min-h-[100px] max-h-[350px] overflow-scroll overflow-x-hidden style-4">
       {events.map((event) => (
@@ -132,7 +137,7 @@ export default function EventListUser() {
           </div>
         </li>
       ))}
-    </ul>}
+    </ul>}</>)}
     </div>
   )
 }

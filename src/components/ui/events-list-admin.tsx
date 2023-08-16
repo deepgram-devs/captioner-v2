@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supabase-browser";
 import { DGEvent } from '@/types/event';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 import { useRouter } from "next/navigation";
+import { Skeleton } from "./skeleton";
 
 const statuses = {
   approved: 'text-green-700 bg-green-50 ring-green-600/20',
@@ -19,6 +20,7 @@ export default function EventList() {
   const supabase = createClient();
 
   const [events, setEvents] = useState([] as DGEvent[]);
+  const [loading, setLoading] = useState(true);
 
 
   const getEvents = async () => {
@@ -37,6 +39,7 @@ export default function EventList() {
     if (data) {
       setEvents(data);
     }
+    setLoading(false);
   };
   
   
@@ -68,7 +71,8 @@ export default function EventList() {
 
   return (
     <div className='custom-bar my-10'>
-    <h1 className='text-2xl'>Admin Panel</h1>  
+    <h1 className='text-2xl'>Admin Panel</h1>
+    {loading? <Skeleton className="h-[100px] w-full"/>:
     <ScrollArea className='min-h-[100px] max-h-[350px] overflow-scroll overflow-x-hidden'>
     {(events.length == 0) ?
       <NoEvents/>:
@@ -111,7 +115,7 @@ export default function EventList() {
         </li>
       ))}
     </ul>}
-    </ScrollArea>
+    </ScrollArea>}
     </div>
   )
 }
