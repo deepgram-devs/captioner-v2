@@ -6,6 +6,9 @@ import { DGEvent } from '@/types/event';
 import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 import { Skeleton } from "./skeleton";
+import MicrophoneIcon from "./microphone-icon";
+import EyeIcon from "./eye-icon";
+import EditIcon from "./edit-icon";
 
 const statuses = {
   approved: 'text-green-700 bg-green-50 ring-green-600/20',
@@ -115,7 +118,11 @@ export default function EventListUser() {
             target="_blank"
             className="text-sm text-link hidden rounded-md bg-black m-[2px] p-3 text-sm font-semibold text-white shadow-sm hover:bg-transparent sm:block whitespace-nowrap"
             href={`/app/events/${event.slug}/broadcast?key=${event.key}`}>
-            Broadcast<span className="sr-only">, {event.title}</span>
+            <div className="flex flex-row items-center gap-x-1">
+            <MicrophoneIcon/>
+            Broadcast
+            </div>
+            <span className="sr-only">, {event.title}</span>
             </Link>
             }
             {(event.approval_status === 'approved') &&
@@ -124,7 +131,10 @@ export default function EventListUser() {
               href={`/events/${event.slug}`}
               className="hidden rounded-md bg-black m-[2px] p-3 text-sm font-semibold text-white shadow-sm hover:bg-transparent sm:block"
             >
-              View<span className="sr-only">, {event.title}</span>
+              <div className="flex flex-row items-center gap-x-1">
+              <EyeIcon/>
+              View
+              </div><span className="sr-only">, {event.title}</span>
             </Link></div>
             }
             <div className=' mr-5'>
@@ -132,7 +142,11 @@ export default function EventListUser() {
               href={`/app/events/edit/${event.id}?key=${event.key}`}
               className="hidden rounded-md bg-black m-[2px] p-3 text-sm font-semibold text-white shadow-sm hover:bg-transparent sm:block"
             >
-              Edit<span className="sr-only">, {event.title}</span>
+              <div className="flex flex-row items-center gap-x-1">
+              <EditIcon/>
+              Edit
+              </div>
+              <span className="sr-only">, {event.title}</span>
             </a></div>
           </div>
         </li>

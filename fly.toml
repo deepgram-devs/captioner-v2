@@ -1,0 +1,23 @@
+# fly.toml app configuration file generated for deepgram-event-captioner on 2023-08-16T13:55:47-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "deepgram-event-captioner"
+primary_region = "sjc"
+
+[build]
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[build.args]
+  NEXT_PUBLIC_SUPABASE_URL="https://hsoedjfciecmcilvnwrh.supabase.co"
+  NEXT_PUBLIC_SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzb2VkamZjaWVjbWNpbHZud3JoIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODYzMzI4MTYsImV4cCI6MjAwMTkwODgxNn0.0W6fK2lyzaHjGh1JR-PLGEuB7tZYHN8qaDSN9QpOD-8"
+  NEXT_SUPABASE_ELEVATED_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhzb2VkamZjaWVjbWNpbHZud3JoIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY4NjMzMjgxNiwiZXhwIjoyMDAxOTA4ODE2fQ.dTDm7dbihro5phJG4CX0QXAXXEDVwTajEk53BttlTkY"
+  NEXT_PUBLIC_SLACK_NOTIFICATION_ENDPOINT="https://6a57-68-42-70-82.ngrok-free.app/alert-slack"

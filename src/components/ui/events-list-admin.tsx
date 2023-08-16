@@ -4,6 +4,7 @@ import { DGEvent } from '@/types/event';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 import { useRouter } from "next/navigation";
 import { Skeleton } from "./skeleton";
+import EditIcon from "./edit-icon";
 
 const statuses = {
   approved: 'text-green-700 bg-green-50 ring-green-600/20',
@@ -104,11 +105,14 @@ export default function EventList() {
             </div>
           </div>
           <div className="flex flex-none items-center gap-x-4 mr-5">
-            <div className={event.approval_status?  '': 'ring-gradient-to-b-2 '}>
+            <div className={event.approval_status=='approved'?'': 'ring-gradient-to-b-2 '}>
             <a
               href={`/app/events/edit/${event.id}?key=${event.key}`}
               className="hidden rounded-md bg-black w-[150px] text-center m-[2px] p-3 text-sm font-semibold text-white shadow-sm hover:bg-transparent sm:block"
-            > {event.approval_status == 'approved' ? 'Edit Event' : 'Open for Approval'}
+            > {event.approval_status == 'approved' ? <div className="flex flex-row items-center gap-x-1">
+              <EditIcon/>
+              Edit
+            </div> : 'Open for Approval'}
             <span className="sr-only">, {event.title}</span>
             </a></div>
           </div>
