@@ -104,7 +104,7 @@ export default function EventList() {
             </div>
           </div>
           <div className="flex flex-none items-center gap-x-4 mr-5">
-            <div className='ring-gradient-to-b-2 '>
+            <div className={event.approval_status?  '': 'ring-gradient-to-b-2 '}>
             <a
               href={`/app/events/edit/${event.id}?key=${event.key}`}
               className="hidden rounded-md bg-black w-[150px] text-center m-[2px] p-3 text-sm font-semibold text-white shadow-sm hover:bg-transparent sm:block"
