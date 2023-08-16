@@ -80,7 +80,7 @@ export default function EventListUser() {
   }, []);
 
   return (
-    <div className='custom-bar my-20'>
+    <div className='custom-bar my-20 pb-12'>
     <h1 className='text-2xl'>Your Events</h1>
     {loading ? <Skeleton className="h-[200px] rounded-lg w-full"/> :(<>
     {fetched && events.length === 0 ? <NoEvents/>:
@@ -129,6 +129,7 @@ export default function EventListUser() {
             <div className=''>
             <Link
               href={`/events/${event.slug}`}
+              target="_blank"
               className="hidden rounded-md bg-black m-[2px] p-3 text-sm font-semibold text-white shadow-sm hover:bg-transparent sm:block"
             >
               <div className="flex flex-row items-center gap-x-1">
@@ -152,6 +153,9 @@ export default function EventListUser() {
         </li>
       ))}
     </ul>}</>)}
+    <div className="flex justify-end">
+    <p className="text-xs text-red-600">* Do not share the broadcasting url with others, click on the view button to get the sharable url</p>
+    </div>
     </div>
   )
 }
