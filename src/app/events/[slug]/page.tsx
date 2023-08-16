@@ -6,6 +6,8 @@ import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import type { DGEvent } from "@/types/event";
 import TranscriptDisplay from "@/components/ui/transcript-display"
+import { useRouter } from "next/navigation";
+import ErrorPage from 'next/error'
 
 import { createClient } from "@/utils/supabase-browser";
 
@@ -13,6 +15,8 @@ const EventHome: NextPage = () => {
   const [event, setEvent] = useState({} as DGEvent | any);
 
   const pathname = usePathname()
+
+  const [error, setError] = useState(false)
 
   
   const slug = pathname.split('/').slice(-1)[0]
@@ -30,6 +34,9 @@ const EventHome: NextPage = () => {
           throw error;
         }
         if (data) {
+          if (data.length === 0) {
+            setError(true)
+          }
           setEvent(data[0]);
         }
       };
@@ -38,11 +45,11 @@ const EventHome: NextPage = () => {
   }, [slug]);
 
   return (
-    <EventLayout eventName={event.title}>
-      <TranscriptDisplay
-        eventId={event.id}
-      />
-    </EventLayout>
+    error ? <ErrorPage statusCode={404}/> : (
+      <EventLayout eventName={event.title}>
+        <TranscriptDisplay eventId={event.id} />
+      </EventLayout>
+    )
   );
 };
 
