@@ -41,7 +41,7 @@ export default function UpdatePasswordCard() {
   try { 
     updatePassword(password);
     // Redirect to /dashboard on successful password update
-    router.push("/dashboard");
+    router.push("/app/events");
     } catch (error) {
       setError((error as Error).message); // Set the error message if the updatePassword function throws an error
   }
