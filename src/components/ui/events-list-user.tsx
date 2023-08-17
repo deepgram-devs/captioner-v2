@@ -10,11 +10,13 @@ import MicrophoneIcon from "./microphone-icon";
 import EyeIcon from "./eye-icon";
 import EditIcon from "./edit-icon";
 
+
 const statuses = {
-  approved: 'text-green-700 bg-green-50 ring-green-600/20',
-  'pending': 'text-gray-600 bg-gray-50 ring-gray-500/10',
-  rejected: 'text-yellow-800 bg-yellow-50 ring-yellow-600/20',
+  approved: 'text-[#00E062]',
+  'pending': 'text-[#FDB022]',
+  rejected: 'text-[#F0463A]',
 }
+
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -94,7 +96,7 @@ export default function EventListUser() {
               <p
                 className={classNames(
                   statuses[event.approval_status],
-                  'rounded-md whitespace-nowrap mt-0.5 px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset'
+                  'rounded-md whitespace-nowrap mt-0.5 px-1.5 py-0.5 text-xs font-medium'
                 )}
               >
                 {event.approval_status}
