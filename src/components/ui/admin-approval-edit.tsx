@@ -331,7 +331,7 @@ const { data, error } = await supabase
               </div>
               {dgProjectIDError!="" ?
                 <p className="mt-3 text-sm leading-6 text-red-500">*{dgProjectIDError}</p>:
-                <p className="mt-3 text-sm leading-6 text-gray-400">*By default it uses the standard event captioner project.</p>
+                <p className="mt-3 text-sm leading-6 text-gray-400">*By default it uses the standard event captioner project. Leave this empty if you want to use the default project.</p>
                 }
             </div>
             
@@ -352,7 +352,7 @@ const { data, error } = await supabase
               </div>
               {dgProjectKeyError!="" ?
                 <p className="mt-3 text-sm leading-6 text-red-500">*{dgProjectKeyError}</p>:
-                <p className="mt-3 text-sm leading-6 text-gray-400">*By default it uses the standard event captioner key.</p>
+                <p className="mt-3 text-sm leading-6 text-gray-400">*By default it uses the standard event captioner key. Leave this empty if you want to use the default key.</p>
               }
             </div>
             
