@@ -5,6 +5,7 @@ import { ScrollArea } from '@radix-ui/react-scroll-area';
 import { useRouter } from "next/navigation";
 import { Skeleton } from "./skeleton";
 import EditIcon from "./edit-icon";
+import useSWR from 'swr';
 
 const statuses = {
   approved: 'text-[#00E062]',
@@ -24,29 +25,24 @@ export default function EventList() {
   const [loading, setLoading] = useState(true);
 
 
-  const getEvents = async () => {
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-    const user = session?.user;
-    const { data, error } = await supabase
-    .from("events")
-    .select(
-      "id, title, slug, key, approval_status, start_date, total_days, user_id, contact_email, organizer_name, created_at"
-      ).order("created_at", { ascending: false }).limit(50);
-    if (error) {
-      throw error;
-    }
-    if (data) {
-      setEvents(data);
-    }
-    setLoading(false);
-  };
-  
-  
   useEffect(() => {
-    getEvents().catch((err) => console.log(err));
-  }, [getEvents]);
+    const fetchEvents = async () => {
+      const { data, error } = await supabase
+        .from("events")
+        .select(
+          "id, title, slug, key, approval_status, start_date, total_days, user_id, contact_email, organizer_name, created_at"
+        )
+        .order("created_at", { ascending: false })
+        .limit(50);
+      console.log(data);
+      if (error) {
+        throw error;
+      }
+      setEvents(data);
+      setLoading(false);
+    };
+    fetchEvents();
+  }, []);
 
   function NoEvents(){
     const router = useRouter();
@@ -85,7 +81,7 @@ export default function EventList() {
               <p className="text-sm font-semibold leading-6 text-white">{event.title}</p>
               {event.approval_status!=undefined && <p
                 className={classNames(
-                  statuses[event.approval_status],
+                  statuses[event.approval_status as keyof typeof statuses],
                   'rounded-md whitespace-nowrap mt-0.5 px-1.5 py-0.5 text-xs font-medium'
                 )}
               >
