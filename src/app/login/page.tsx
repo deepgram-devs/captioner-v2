@@ -11,6 +11,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState, useEffect, useContext } from "react";
 import { useAuth } from "../../components/providers/supabase-auth-provider";
 
+
 const isEmpty = (obj: User | null | undefined): boolean => {
   if (obj === null) return true;
   return obj?.id === undefined;
@@ -64,10 +65,12 @@ const Login: NextPage = () => {
                   <div className="rounded-md ring-gradient-to-b-2 p-[0.125rem]">
                     <div className="bg-zinc-950 p-8 rounded min-h-[12rem] flex flex-col justify-center">
                       {user ? (
-                        <>
-                          <BeakerIcon className="h-20 w-20 stroke-red-500 animate-spin mb-4 self-center" />
-                          <span className="loading">Fetching user</span>
-                        </>
+                        <div className=" flex flex-col items-center justify-center">
+                         <div className="sk-bounce">
+                          <div className="sk-bounce-dot"></div>
+                          <div className="sk-bounce-dot"></div>
+                        </div>
+                        </div>
                       ) : (
                         <LoginBox />
                       )}

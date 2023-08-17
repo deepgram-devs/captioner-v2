@@ -5,7 +5,6 @@ import { ScrollArea } from '@radix-ui/react-scroll-area';
 import { useRouter } from "next/navigation";
 import { Skeleton } from "./skeleton";
 import EditIcon from "./edit-icon";
-import useSWR from 'swr';
 
 const statuses = {
   approved: 'text-[#00E062]',
