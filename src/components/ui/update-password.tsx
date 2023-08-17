@@ -40,7 +40,6 @@ export default function UpdatePasswordCard() {
 
   try { 
     updatePassword(password);
-    // Redirect to /dashboard on successful password update
     router.push("/app/events");
     } catch (error) {
       setError((error as Error).message); // Set the error message if the updatePassword function throws an error
@@ -61,7 +60,7 @@ export default function UpdatePasswordCard() {
             placeholder="New Password"
             autoComplete="new-password"
             onChange={handlePasswordChange}
-            className={!isPasswordMatch ? "border-red-500" : ""} // Add a class to indicate an error
+            className={!isPasswordMatch ? "border-[#ff2eea]" : ""} // Add a class to indicate an error
           />
           <input
             id="confirmPassword"
@@ -69,7 +68,7 @@ export default function UpdatePasswordCard() {
             placeholder="Confirm New Password"
             autoComplete="new-password"
             onChange={handleConfirmPasswordChange}
-            className={!isPasswordMatch ? "border-red-500" : ""} // Add a class to indicate an error
+            className={!isPasswordMatch ? "border-[#ff2eea]" : ""} // Add a class to indicate an error
           />
           {!isPasswordMatch && (
             <p className="text-[#ff2eea]">Passwords do not match.</p>
