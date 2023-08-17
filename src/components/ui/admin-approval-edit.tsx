@@ -78,6 +78,8 @@ export default function AdminEdit(event: any){
   }
   
   const updateEventData = async (approvalStatus = 'pending') => { 
+    var dgKey = null;
+    var dgProject = null;
     setEventApprovalState(approvalStatus);
     if ((slug == '' || slug == null) && approvalStatus == 'approved'){
       setSlugError("Please enter a valid slug");
@@ -89,7 +91,8 @@ export default function AdminEdit(event: any){
     else{
       setSlugError("");
     }
-    if ((dgProjectID == '' || dgProjectID == null) && approvalStatus == 'approved'){
+    if (dgProjectID != null){
+      if (dgProjectID.length != 36){
       setDGProjectIDError("Please enter a valid Deepgram Project ID");
 
       // Bringing focus of the user to the error message
@@ -97,45 +100,75 @@ export default function AdminEdit(event: any){
       element?.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
 
       return;
+      }
+      else if (dgProjectID == ""){
+        dgProject = null
+      }
+      else{
+        dgProject = dgProjectID
+      }
     }
     else{
-      setDGProjectIDError("");
+      dgProject = null
     }
-    if ((dgProjectKey == '' || dgProjectKey == null) && approvalStatus == 'approved'){
+    if (dgProjectKey != null){
+      if (dgProjectKey.length != 40){
       setDGProjectKeyError("Please enter a valid Deepgram Project Key");
 
       // Bringing focus of the user to the error message
       const element = document.getElementById("dgProjectKeyError");
       element?.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
 
-      return;
+      return;}
+      
+    else if (dgProjectKey == ""){
+      dgKey = null
+    }
+      else{
+        dgKey = dgProjectKey
+      }
+      
     }
     else{
-      setDGProjectIDError("");
+      dgKey = null
     }
     const updated = changesMade();   
     if (!updated) return;
-    const {data,error} = await supabase
-            .from('events')
-            .update({ title: eventName,
-                start_date: date?.from,
-                end_date: date?.to,
-                description: eventDescription,
-                organizer_name: organizerName,
-                contact_email: organizerEmail,
-                website: websiteLink,
-                country: country,
-                city: city,
-                street_address: streetAddress,
-                state: eventState,
-                zip_code: zipCode,
-                slug: slug,
-                dg_project: dgProjectID,
-                dg_key: dgProjectKey,
-                approval_status: approvalStatus
-             })
-            .eq('id', event.event.id)
-            .select();
+    // Create the base update object with common fields
+// Create the base update object with common fields
+const updateObject: Record<string, any> = {
+  title: eventName,
+  start_date: date?.from,
+  end_date: date?.to,
+  description: eventDescription,
+  organizer_name: organizerName,
+  contact_email: organizerEmail,
+  website: websiteLink,
+  country: country,
+  city: city,
+  street_address: streetAddress,
+  state: eventState,
+  zip_code: zipCode,
+  slug: slug,
+  approval_status: approvalStatus
+};
+
+// Conditionally add dg_project and dg_key fields if they are not null
+if (dgProject !== null) {
+  updateObject.dg_project = dgProject;
+}
+
+if (dgKey !== null) {
+  updateObject.dg_key = dgKey;
+}
+
+// Perform the update with the dynamically created update object
+const { data, error } = await supabase
+  .from('events')
+  .update(updateObject)
+  .eq('id', event.event.id)
+  .select();
+
     if (!error){ 
       setShowSuccess(true);
     }
@@ -193,9 +226,7 @@ export default function AdminEdit(event: any){
       <div className="space-y-12">
         <div className="border-b border-white/10 pb-12">
           <h2 className="text-3xl font-semibold leading-7 text-white">Approve & Edit Event</h2>
-          {/* <p className="mt-1 text-sm leading-6 text-gray-400">
-            After you propose a new event collaboration with Deepgram. It will be reviewed by our team for approval.
-          </p> */}
+
           
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             
@@ -298,8 +329,9 @@ export default function AdminEdit(event: any){
                   onChange={(e) => setDGProjectID(e.target.value)}
                 />
               </div>
-              {dgProjectIDError!="" &&
-                <p className="mt-3 text-sm leading-6 text-red-500">*{dgProjectIDError}</p>
+              {dgProjectIDError!="" ?
+                <p className="mt-3 text-sm leading-6 text-red-500">*{dgProjectIDError}</p>:
+                <p className="mt-3 text-sm leading-6 text-gray-400">*By default it uses the standard event captioner project.</p>
                 }
             </div>
             
@@ -318,8 +350,9 @@ export default function AdminEdit(event: any){
                   onChange={(e) => setDGProjectKey(e.target.value)}
                 />
               </div>
-              {dgProjectKeyError!="" &&
-                <p className="mt-3 text-sm leading-6 text-red-500">*{dgProjectKeyError}</p>
+              {dgProjectKeyError!="" ?
+                <p className="mt-3 text-sm leading-6 text-red-500">*{dgProjectKeyError}</p>:
+                <p className="mt-3 text-sm leading-6 text-gray-400">*By default it uses the standard event captioner key.</p>
               }
             </div>
             

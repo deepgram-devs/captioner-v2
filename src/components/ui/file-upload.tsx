@@ -137,7 +137,7 @@ export default function FileUpload({event, prospectusFile, setProspectusFile}: F
         console.log("prospectus fetched");
     }}, [event]);
 
-return(<div className="">
+return(<div className="col-span-6">
 
     { propspectusFetched && (
     <button
@@ -160,7 +160,7 @@ return(<div className="">
                     ) : (
                     <PhotoIcon className="mx-auto h-12 w-12 text-gray-500" aria-hidden="true" />
                     )}
-                  <div className="mt-4 flex text-sm leading-6 text-gray-400">
+                  <div className="mt-4 flex text-sm leading-6 text-gray-400 flex-col">
                     <label
                       htmlFor="file-upload"
                       className="relative cursor-pointer rounded-md bg-gray-900 font-semibold text-white focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 focus-within:ring-offset-gray-900 hover:text-indigo-500"

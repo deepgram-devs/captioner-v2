@@ -38,7 +38,7 @@ function EventEditPage(){
               console.log('here')
               const { data, error } = await supabase
               .from("events")
-              .select("id, title, slug, key, dg_project, dg_key, approval_status, start_date, end_date, total_days, user_id, contact_email, website, description, organizer_name, country, city, state, street_address, zip_code")
+              .select("id, title, slug, key, approval_status, start_date, end_date, total_days, user_id, contact_email, website, description, organizer_name, country, city, state, street_address, zip_code")
               .eq("id", id).limit(1);
               if (error) {
                 throw error;

@@ -243,10 +243,12 @@ const alertSlackBot = async (data:any) => {
               </div>
               <p className="mt-3 text-sm leading-6 text-gray-400">Write a few sentences about the event.</p>
             </div>
-
-
-
+            <div className="col-span-full">
+            <label className="block text-sm font-medium leading-6 text-white">
+                Event Prospectus
+              </label>
             <FileUploadNewEvent prospectusFile={event_prospectus} setProspectusFile={setEventProspectus}/>
+          </div>
           </div>
         </div>
 
