@@ -171,7 +171,7 @@ const alertSlackBot = async (data:any) => {
           
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             
-          <div className="col-span-full">
+          <div className="col-span-4">
               <label className="block text-sm font-medium leading-6 text-white">
                 Event Name
               </label>
@@ -190,7 +190,7 @@ const alertSlackBot = async (data:any) => {
               </div>
             </div>
 
-            <div className="col-span-full">
+            <div className="col-span-4">
               <label className="block text-sm font-medium leading-6 text-white">
                 Event Dates
               </label>
@@ -234,7 +234,7 @@ const alertSlackBot = async (data:any) => {
             </div>
             </div>
             
-            <div className="col-span-full">
+            <div className="col-span-4">
               <label htmlFor="about" className="block text-sm font-medium leading-6 text-white">
                 Event Description
               </label>
@@ -252,7 +252,7 @@ const alertSlackBot = async (data:any) => {
             </div>
 
 
-            <div className="col-span-full">
+            <div className="col-span-4">
             <label className="block text-sm font-medium leading-6 text-white">
                 Event Prospectus
               </label>
@@ -266,7 +266,7 @@ const alertSlackBot = async (data:any) => {
           <p className="mt-1 text-sm leading-6 text-gray-400">Use the address where the event will be physically held.</p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-          <div className="col-span-full">
+          <div className="col-span-4">
               <label className="block text-sm font-medium leading-6 text-white">
                 Organizer Name
               </label>
@@ -283,7 +283,7 @@ const alertSlackBot = async (data:any) => {
             </div>
 
             
-            <div className="sm:col-span-full">
+            <div className="sm:col-span-4">
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-white">
                 Email address
               </label>
@@ -299,7 +299,7 @@ const alertSlackBot = async (data:any) => {
               </div>
             </div>
 
-            <div className="col-span-full">
+            <div className="col-span-4">
               <label className="block text-sm font-medium leading-6 text-white">
                 Website Link
               </label>
@@ -315,7 +315,7 @@ const alertSlackBot = async (data:any) => {
               </div>
             </div>
 
-            <div className="sm:col-span-3">
+            <div className="sm:col-span-4">
               <label htmlFor="country" className="block text-sm font-medium leading-6 text-white">
                 Country
               </label>
@@ -335,7 +335,7 @@ const alertSlackBot = async (data:any) => {
               </div>
             </div>
 
-            <div className="col-span-full">
+            <div className="col-span-4">
               <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-white">
                 Street address
               </label>
