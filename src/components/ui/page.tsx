@@ -178,7 +178,7 @@ const alertSlackBot = async (data:any) => {
                   onChange={(e) => setEventName(e.target.value)}
                 />
                 {slugError!="" &&
-                <p className="mt-3 text-sm leading-6 text-red-500">*{slugError}</p>
+                <p className="mt-3 text-sm leading-6 text-[#ff2eea]">*{slugError}</p>
                 }
               </div>
             </div>

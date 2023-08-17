@@ -13,7 +13,9 @@ interface ContextI {
   mutate: any;
   signOut: () => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<string | null>;
+  updatePassword: (password: string) => Promise<void>;
   createAccount: (email: string, password: string) => Promise<string | null>;
+  
 }
 const Context = createContext<ContextI>({
   user: null,
@@ -22,6 +24,7 @@ const Context = createContext<ContextI>({
   mutate: null,
   signOut: async () => {},
   signInWithEmail: async (email: string, password: string) => null,
+  updatePassword: async (password: string) => {},
   createAccount: async (email: string, password: string) => null,
 });
 
@@ -70,6 +73,15 @@ export default function SupabaseAuthProvider({
     return null;
   };
 
+  const updatePassword = async (password: string) => {
+    const { data, error } = await supabase.auth.updateUser({
+      password,
+    });
+    if (error) {
+      alert(error.message);
+    }
+  };
+
   // Sign-Up with Email
   const createAccount = async (email: string, password: string) => {
     const { error } = await supabase.auth.signUp({
@@ -106,6 +118,7 @@ export default function SupabaseAuthProvider({
     mutate,
     signOut,
     signInWithEmail,
+    updatePassword,
     createAccount,
   };
 

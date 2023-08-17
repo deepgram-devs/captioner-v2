@@ -156,7 +156,7 @@ export default function EventListUser() {
       ))}
     </ul>}</>)}
     <div className="flex justify-end">
-    <p className="text-xs text-red-600">* Do not share the broadcasting url with others, click on the view button to get the sharable url</p>
+    <p className="text-xs text-[#ff2eea]">* Do not share the broadcasting url with others, click on the view button to get the sharable url</p>
     </div>
     </div>
   )
