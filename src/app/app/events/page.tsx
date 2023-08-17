@@ -36,7 +36,7 @@ const EventHome: NextPage = () => {
           }
         } className="bg-black hover:bg-transparent m-[2px] rounded-md">
             <div className="my-3 mx-5 sm:mx-10">
-            Create event
+            Create Event
             </div>
         </button>
       </div>

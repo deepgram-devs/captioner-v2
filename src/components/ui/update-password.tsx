@@ -78,7 +78,7 @@ export default function UpdatePasswordCard() {
       </CardContent>
       <CardFooter>
         <Button
-          className="w-full"
+          className="w-full rounded-[5px]"
           disabled={!password || !confirmPassword || !isPasswordMatch}
           onClick={handleSubmit}
         >
