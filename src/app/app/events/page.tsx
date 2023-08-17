@@ -8,8 +8,6 @@ import AdminContext from "@/components/providers/admin-context";
 import AdminEventList from "@/components/ui/events-list-admin";
 import UserEventList from "@/components/ui/events-list-user";
 import {useRouter} from "next/navigation";
-import { useSupabase } from "@/components/providers/supabase-provider";
-import SignOutIcon from "@/components/ui/sign-out-icon";
 import { UserAccountNav } from "@/components/ui/user-account-nav";
 
 // Create a single supabase client for interacting with your database
@@ -18,11 +16,6 @@ const supabase = createClient();
 const EventHome: NextPage = () => {
   const {isAdmin} = useContext(AdminContext);
   const router = useRouter();
-  const {supabase} = useSupabase();
-
-  function logout(){
-    supabase.auth.signOut();
-  }
 
   return (
     <>
@@ -41,13 +34,7 @@ const EventHome: NextPage = () => {
         </button>
       </div>
 
-        <button onClick={
-          (e)=>{
-          logout();
-          }
-        } className="bg-black">
-            <UserAccountNav/>
-        </button>
+      <UserAccountNav/>
       </div>
     {isAdmin && <AdminEventList/>}
     <UserEventList/>
