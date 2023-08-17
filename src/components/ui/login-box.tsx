@@ -47,6 +47,7 @@ const LoginBox = () => {
             button: "ring-gradient-to-b-2",
             label: 'text-left'
           },
+          
         }}
         theme="dark"
         providers={[]}

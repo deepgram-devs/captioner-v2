@@ -10,6 +10,7 @@ import UserEventList from "@/components/ui/events-list-user";
 import {useRouter} from "next/navigation";
 import { useSupabase } from "@/components/providers/supabase-provider";
 import SignOutIcon from "@/components/ui/sign-out-icon";
+import { UserAccountNav } from "@/components/ui/user-account-nav";
 
 // Create a single supabase client for interacting with your database
 
@@ -44,11 +45,8 @@ const EventHome: NextPage = () => {
           (e)=>{
           logout();
           }
-        } className="bg-black hover:bg-transparent m-[2px] rounded-md">
-            <div className="my-3 text-[#ff2eea] flex flex-row gap-x-1">
-            <SignOutIcon/>
-            <p>Logout</p>
-            </div>
+        } className="bg-black">
+            <UserAccountNav/>
         </button>
       </div>
     {isAdmin && <AdminEventList/>}
