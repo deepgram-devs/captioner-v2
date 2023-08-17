@@ -34,7 +34,6 @@ export default function EventList() {
         )
         .order("created_at", { ascending: false })
         .limit(50);
-      console.log(data);
       if (error) {
         throw error;
       }
