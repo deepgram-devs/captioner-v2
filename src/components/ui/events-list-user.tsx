@@ -9,7 +9,27 @@ import { Skeleton } from "./skeleton";
 import MicrophoneIcon from "./microphone-icon";
 import EyeIcon from "./eye-icon";
 import EditIcon from "./edit-icon";
+import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
 
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 const statuses = {
   approved: 'text-[#00E062]',
@@ -54,6 +74,42 @@ export default function EventListUser() {
 
   const [loading, setLoading] = useState(true);
 
+  const [deleteEventID, setDeleteEventID] = useState('');
+
+  async function deleteEvent(id: string) {
+      const { error } = await supabase
+        .from("events")
+        .delete()
+        .eq("id", id);
+      if (error) {
+        throw error;
+      }
+      else{
+      setEvents((prev) => prev.filter((event) => event.id !== id));
+      }
+  }
+
+  function eventDropDown(id: string) {
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger className="flex items-center justify-center w-6 h-6 rounded-fullW">
+          <EllipsisHorizontalIcon className="w-5 h-5" />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" sideOffset={5}>
+        <AlertDialogTrigger onClick={
+            (e)=>{
+              setDeleteEventID(id);
+            }
+          } className="w-full">
+        <DropdownMenuItem className="text-sm w-full">
+            Delete
+        </DropdownMenuItem>
+        </AlertDialogTrigger>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  }
+
   const getEvents = async () => {
     const {
       data: { session },
@@ -82,6 +138,7 @@ export default function EventListUser() {
   }, []);
 
   return (
+    <AlertDialog key='user-events'>
     <div className='custom-bar my-20 pb-12'>
     <h1 className='text-2xl'>Your Events</h1>
     {loading ? <Skeleton className="h-[200px] rounded-lg w-full"/> :(<>
@@ -140,7 +197,7 @@ export default function EventListUser() {
               </div><span className="sr-only">, {event.title}</span>
             </Link></div>
             }
-            <div className=' mr-5'>
+            <div className=''>
             <a
               href={`/app/events/edit/${event.id}?key=${event.key}`}
               className="hidden rounded-md bg-black m-[2px] p-3 text-sm font-semibold text-white shadow-sm hover:bg-transparent sm:block"
@@ -150,7 +207,11 @@ export default function EventListUser() {
               Edit
               </div>
               <span className="sr-only">, {event.title}</span>
-            </a></div>
+            </a>
+            </div>
+            <div className="mr-6">
+          {eventDropDown(event.id)}
+          </div>
           </div>
         </li>
       ))}
@@ -159,5 +220,22 @@ export default function EventListUser() {
     <p className="text-xs text-[#ff2eea]">* Do not share the broadcasting url with others, click on the view button to get the sharable url</p>
     </div>
     </div>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+        <AlertDialogDescription>
+          This action cannot be undone. This will delete the event and you will have to request for a new one.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction onClick={
+          (e)=>{
+            deleteEvent(deleteEventID);
+          }
+        }>Continue</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+    </AlertDialog>
   )
 }

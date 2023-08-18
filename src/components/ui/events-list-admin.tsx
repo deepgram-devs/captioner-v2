@@ -64,15 +64,15 @@ export default function EventList() {
           <EllipsisHorizontalIcon className="w-5 h-5" />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" sideOffset={5}>
-        <DropdownMenuItem className="text-sm">
-          <AlertDialogTrigger onClick={
+        <AlertDialogTrigger onClick={
             (e)=>{
               setDeleteEventID(id);
             }
-          }>
+          } className="w-full">
+        <DropdownMenuItem className="text-sm w-full">
             Delete
-          </AlertDialogTrigger>
         </DropdownMenuItem>
+        </AlertDialogTrigger>
         </DropdownMenuContent>
       </DropdownMenu>
     );
@@ -119,7 +119,7 @@ export default function EventList() {
   }
 
   return (
-    <AlertDialog>
+    <AlertDialog key='admin-events'>
     <div className='custom-bar my-10'>
     <h1 className='text-2xl'>Admin Panel</h1>
     {loading? <Skeleton className="h-[100px] w-full"/>:
@@ -166,7 +166,6 @@ export default function EventList() {
             </a></div>
             <div>
             {eventDropDown(event.id)}
-            <div/>
             </div>
           </div>
         </li>
