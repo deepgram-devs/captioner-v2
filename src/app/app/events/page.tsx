@@ -2,20 +2,36 @@
 
 import AdminLayout from "@/components/layouts/admin-layout";
 import type { NextPage } from "next";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import { createClient } from "@/utils/supabase-browser";
 import AdminContext from "@/components/providers/admin-context";
 import AdminEventList from "@/components/ui/events-list-admin";
 import UserEventList from "@/components/ui/events-list-user";
 import {useRouter} from "next/navigation";
 import { UserAccountNav } from "@/components/ui/user-account-nav";
-
+import { useAuth } from "@/components/providers/supabase-auth-provider";
 // Create a single supabase client for interacting with your database
 
 const supabase = createClient();
 const EventHome: NextPage = () => {
-  const {isAdmin} = useContext(AdminContext);
+  const {isAdmin, setIsAdmin} = useContext(AdminContext);
   const router = useRouter();
+  const { user } = useAuth();
+  // reset the admin context on page load until we know if the user is an admin
+  useEffect(()=>{
+    setIsAdmin(false);
+  } 
+  ,[]);
+
+  useEffect(() => {
+    if (user) {
+      const authDomain = user.email?.split("@")[1];
+      if (authDomain == "deepgram.com") {
+        setIsAdmin(true);
+      }
+    }
+  }, [user]);
+
 
   return (
     <>
