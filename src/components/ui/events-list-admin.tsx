@@ -177,7 +177,7 @@ export default function EventList() {
       <AlertDialogHeader>
         <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
         <AlertDialogDescription>
-          This action cannot be undone. This will delete the event and you will have to request for a new one.
+        This action cannot be undone. This will delete the event and you will have to request a new one.
         </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter>
