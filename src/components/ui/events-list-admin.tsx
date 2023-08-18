@@ -5,6 +5,25 @@ import { ScrollArea } from '@radix-ui/react-scroll-area';
 import { useRouter } from "next/navigation";
 import { Skeleton } from "./skeleton";
 import EditIcon from "./edit-icon";
+import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
 
 const statuses = {
   approved: 'text-[#00E062]',
@@ -16,13 +35,48 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
+
 export default function EventList() {
 
   const supabase = createClient();
 
   const [events, setEvents] = useState([] as DGEvent[]);
   const [loading, setLoading] = useState(true);
+  const [deleteEventID, setDeleteEventID] = useState('');
 
+  async function deleteEvent(id: string) {
+      const { error } = await supabase
+        .from("events")
+        .delete()
+        .eq("id", id);
+      if (error) {
+        throw error;
+      }
+      else{
+      setEvents((prev) => prev.filter((event) => event.id !== id));
+      }
+  }
+
+  function eventDropDown(id: string) {
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger className="flex items-center justify-center w-6 h-6 rounded-fullW">
+          <EllipsisHorizontalIcon className="w-5 h-5" />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" sideOffset={5}>
+        <DropdownMenuItem className="text-sm">
+          <AlertDialogTrigger onClick={
+            (e)=>{
+              setDeleteEventID(id);
+            }
+          }>
+            Delete
+          </AlertDialogTrigger>
+        </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  }
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -65,6 +119,7 @@ export default function EventList() {
   }
 
   return (
+    <AlertDialog>
     <div className='custom-bar my-10'>
     <h1 className='text-2xl'>Admin Panel</h1>
     {loading? <Skeleton className="h-[100px] w-full"/>:
@@ -98,7 +153,7 @@ export default function EventList() {
               <p className="truncate">Created by {event.organizer_name}</p>}
             </div>
           </div>
-          <div className="flex flex-none items-center gap-x-4 mr-5">
+          <div className="flex flex-none items-center gap-x-8 mr-5">
             <div className={event.approval_status=='approved'?'': 'ring-gradient-to-b-2 '}>
             <a
               href={`/app/events/edit/${event.id}?key=${event.key}`}
@@ -109,11 +164,32 @@ export default function EventList() {
             </div> : 'Open for Approval'}
             <span className="sr-only">, {event.title}</span>
             </a></div>
+            <div>
+            {eventDropDown(event.id)}
+            <div/>
+            </div>
           </div>
         </li>
       ))}
     </ul>}
     </ScrollArea>}
     </div>
+    <AlertDialogContent>
+      <AlertDialogHeader>
+        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+        <AlertDialogDescription>
+          This action cannot be undone. This will delete the event and you will have to request for a new one.
+        </AlertDialogDescription>
+      </AlertDialogHeader>
+      <AlertDialogFooter>
+        <AlertDialogCancel>Cancel</AlertDialogCancel>
+        <AlertDialogAction onClick={
+          (e)=>{
+            deleteEvent(deleteEventID);
+          }
+        }>Continue</AlertDialogAction>
+      </AlertDialogFooter>
+    </AlertDialogContent>
+    </AlertDialog>
   )
 }

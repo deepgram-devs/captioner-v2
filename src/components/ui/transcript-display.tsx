@@ -66,11 +66,8 @@ const TranscriptDisplay = (props: TDProps) => {
               var res = lastTwo + '\n' + payload.new.transcript;
               const updatedLastTwo = payload.new.transcript;
               lastTwo = (updatedLastTwo);
-              console.log(lastTwo);
-              // console.log("final", lastTwo);
               return res
             } else{
-            console.log("not final", lastTwo);
             return lastTwo + "\n" + payload.new.transcript;
             }
           });
